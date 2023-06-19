@@ -1,0 +1,254 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c37bd9eab2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="segundo.css">
+    <title>Tabela de Futebol</title>
+</head>
+<body>
+
+    <nav>
+        <script src="/js/menu.js"></script>
+        <script src="/js/script.js"></script> 
+        <link rel="stylesheet" href="/css/menu.css">        
+    </nav>
+
+
+
+    <div class="source-box">
+        <header class="cabeça">
+            <div class="title">Placar de Futebol</div>
+        </header>
+        <section class="itens-box">
+            <div class="line">
+                <div class="column">
+                    <div class="estates">
+                        <span class="texto-1"><i class="fa-solid fa-scale-balanced"></i>Empatado</span>
+                    </div>
+                    <div class="imagens">
+                        <!-- <img src="/imagens/time1.png" alt="" class="img-1"> -->
+                        <div class="container-1" id="imgBox">
+
+                            <div class="cartao-amarelo" style="display: none;" id="cartao-amarelo"><span class="cardtext-1" id="yellow-cardtext-1"> </span></div>
+                            <div class="cartao-vermelho" style="display: none;" id="cartao-vermelho"><span class="cardtext-1" id="red-cardtext-1"> </span></div>
+                            
+                            <input type="file" accept="image/*" name="image" id="file" style="display: none;" onchange="loadFile(event)">
+                            <label for="file"><span class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></span></label>
+
+                        </div>
+                    </div>
+                    <form class="placar" name="plac1">
+                        
+                        <input type="text" name="time1" class="time-1" required id="time-1" onblur="melhor()" autocomplete="off">
+                        <label for="time-1" class="time1_label">Time A</label>
+                        <span class="futebol"><i class="fa-solid fa-futbol"></i></span>
+
+                        <textarea id="textBox" placeholder="Time A:" onblur="sumir()" style="display: none;"></textarea>
+                        <label for="textBox" ><span class="edit-1" id="edit-1" onclick="aparecer()" ><i class="fa-solid fa-pen-to-square"></i></span></label>
+
+                        <input type="text" placeholder="0" class="Input-color Amarelo" id="Input_amarelo1" autocomplete="off" style="display: none;">
+                        <input type="button" class="button Amarelo" value="Amarelo " onclick="YellowCard_1()">
+                        <input type="text" placeholder="0" class="Input-color Vermelho" id="Input_vermelho1" autocomplete="off" style="display: none;">
+                        <input type="button" class="button Vermelho" value="Vermelho" onclick="RedCard_1()">
+                        
+                    </form>
+                </div>
+                <div class="column">
+                    <div class="estates">
+                        <span class="texto-2"><i class="fa-solid fa-scale-balanced"></i>Empatado</span>
+                    </div>
+                    <div class="imagens">
+                        <!-- <img src="/imagens/time2.png" alt="" class="img-2"> -->
+                        <div class="container-2" id="imgBox-2">
+
+                            <div class="cartao-amarelo-2" style="display: none;" id="cartao-amarelo-2"><span class="cardtext-2" id="yellow-cardtext-2"> </span></div>
+                            <div class="cartao-vermelho-2" style="display: none;" id="cartao-vermelho-2"><span class="cardtext-2" id="red-cardtext-2"> </span></div>
+                            <input type="file" accept="image/*" name="image" id="file-2" style="display: none;" onchange="loadFile2(event)">
+                            <label for="file-2"><span class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></span></label>
+
+                        </div>
+                    </div>
+                    <form class="placar" name="plac2">
+                        <input type="text" name="time2" class="time-2" required id="time-2" onblur="melhor()" autocomplete="off"> 
+                        <label for="time-2" class="time2_label">Time B</label>
+                        <span class="futebol"><i class="fa-solid fa-futbol"></i></span>
+
+                        <textarea id="textBox-2" placeholder="Time B:" onblur="sumir2()" style="display: none;"></textarea>
+                        <label for="textBox-2" ><span class="edit-2" id="edit-2" onclick="aparecer_2()"><i class="fa-solid fa-pen-to-square"></i></span></label>
+                        
+                        <input type="text" placeholder="0" class="Input-color2 Amarelo" id="Input_amarelo2" autocomplete="off" style="display: none;">
+
+                        <input type="button" class="button Amarelo" value="Amarelo " onclick="YellowCard_2()">
+                        <input type="text" placeholder="0" class="Input-color2 Vermelho" id="Input_vermelho2" autocomplete="off" style="display: none;">
+                        <input type="button" class="button Vermelho" value="Vermelho" onclick="RedCard_2()">
+                    </form>
+                </div>
+            </div>
+        </section>
+        <footer class="rodape">
+        </footer>
+    </div>
+    <script>
+
+        var yellow_input1 = document.getElementById('Input_amarelo1');
+        var red_input1 = document.getElementById('Input_vermelho1');
+        var yellow_input2 = document.getElementById('Input_amarelo2');
+        var red_input2 = document.getElementById('Input_vermelho2');
+
+        var TextBox = document.getElementById("textBox");
+        var imgBox = document.getElementById("imgBox");
+
+        var TextBox2 = document.getElementById("textBox-2");
+        var imgBox2 = document.getElementById("imgBox-2");
+
+        var time1,time2;
+function melhor(){
+   time1 = parseFloat(plac1.time1.value);
+   time2 = parseFloat(plac2.time2.value);
+   const time_1 = document.getElementsByClassName("time2");
+   const time_2 = document.getElementsByClassName("time2");
+
+   const texto1 = document.querySelector(".texto-1")
+   const texto2 = document.querySelector(".texto-2")
+   let perdendo = '<i class="fa-solid fa-recycle"></i>'+' Perdendo';
+   let ganhando = '<i class="fa-solid fa-trophy"></i> '+' Ganhando';
+   let empate = '<i class="fa-solid fa-scale-balanced"></i>'+'Empatado';
+   if(time1 > time2){
+       imgBox.classList.remove("dark");
+       console.log("ganhando");
+       texto1.innerHTML = ganhando;
+       texto2.innerHTML = perdendo;
+       texto1.style.color = "#00a86b";
+       texto2.style.color = "#c00f32";
+       imgBox2.classList.add("dark");
+       
+   }
+   else if(time2 > time1){
+        imgBox2.classList.remove("dark");
+        texto1.innerHTML = perdendo;
+        texto2.innerHTML = ganhando;
+        texto1.style.color = "#c00f32";
+        texto2.style.color = "#00a86b";
+        imgBox.classList.add("dark");
+        
+   }
+   else{
+    imgBox2.classList.remove("dark");
+    imgBox.classList.remove("dark");
+    texto1.innerHTML = empate;
+    texto2.innerHTML = empate;
+    texto1.style.color = "#262626";
+    texto2.style.color = "#262626";
+    document.getElementById("prevText").style.color = "#fff";
+   } 
+}
+    //Cartões
+        yellow_input1.onkeyup = yellow_input1.onkeypress = function(){
+            document.getElementById('yellow-cardtext-1').innerHTML = this.value;
+        }
+        red_input1.onkeyup = red_input1.onkeypress = function(){
+            document.getElementById('red-cardtext-1').innerHTML = this.value;
+        }
+        yellow_input2.onkeyup = yellow_input2.onkeypress = function(){
+            document.getElementById('yellow-cardtext-2').innerHTML = this.value;
+        }
+        red_input2.onkeyup = red_input2.onkeypress = function(){
+            document.getElementById('red-cardtext-2').innerHTML = this.value;
+        }
+        //Change label Names
+        TextBox.onkeyup = TextBox.onkeypress = function(){
+            document.getElementsByClassName("time1_label")[0].innerHTML = this.value;
+        }
+
+        var loadFile = function(event){
+            imgBox.style.backgroundImage = "url(" + URL.createObjectURL(event.target.files[0]) + ")";
+        }
+
+
+        TextBox2.onkeyup = TextBox2.onkeypress = function(){
+            document.getElementsByClassName("time2_label")[0].innerHTML = this.value;
+        }
+
+        var loadFile2 = function(event){
+            imgBox2.style.backgroundImage = "url(" + URL.createObjectURL(event.target.files[0]) + ")";
+        }
+        function aparecer(){
+            if(document.getElementById( 'textBox' ).style.display === 'none'){
+                document.getElementById( 'textBox' ).style.display = 'block';
+                document.getElementById("edit-1").classList.add("cor"); 
+                document.getElementsByClassName("time1_label")[0].innerHTML = 'Time A';
+                TextBox.value = "";         
+            }else{    
+            }
+        
+        }
+        function aparecer_2(){
+            if(document.getElementById( 'textBox-2' ).style.display === 'none'){
+                document.getElementById( 'textBox-2' ).style.display = 'block';
+                document.getElementById("edit-2").classList.add("cor");
+                document.getElementsByClassName("time2_label")[0].innerHTML = 'Time B';
+                TextBox2.value = "";
+            }
+        }
+        function sumir(){
+            document.getElementById( 'textBox' ).style.display = 'none';
+            document.getElementById("edit-1").classList.remove("cor");
+        }
+
+        function sumir2(){
+            document.getElementById( 'textBox-2' ).style.display = 'none';
+            document.getElementById("edit-2").classList.remove("cor");
+        }
+
+        function YellowCard_1(){
+            if(document.getElementById("cartao-amarelo").style.display === "none"){
+
+                document.getElementById("cartao-amarelo").style.display = "block";
+                document.getElementById('Input_amarelo1').style.display = 'block'
+            }else{
+                document.getElementById("cartao-amarelo").style.display = "none";
+                document.getElementById('Input_amarelo1').style.display = 'none';
+            }
+
+        }
+
+        function RedCard_1(){
+            if(document.getElementById("cartao-vermelho").style.display === "none"){
+
+            document.getElementById("cartao-vermelho").style.display = "block";
+            document.getElementById('Input_vermelho1').style.display = 'block';
+            }else{
+            document.getElementById("cartao-vermelho").style.display = "none";
+            document.getElementById('Input_vermelho1').style.display = 'none';
+            } 
+        }
+
+        function YellowCard_2(){
+            if(document.getElementById("cartao-amarelo-2").style.display === "none"){
+
+                document.getElementById("cartao-amarelo-2").style.display = "block";
+                document.getElementById('Input_amarelo2').style.display = 'block';
+            }else{
+                document.getElementById("cartao-amarelo-2").style.display = "none";
+                document.getElementById('Input_amarelo2').style.display = 'none';
+            }
+
+        }
+
+        function RedCard_2(){
+            if(document.getElementById("cartao-vermelho-2").style.display === "none"){
+
+            document.getElementById("cartao-vermelho-2").style.display = "block";
+            document.getElementById('Input_vermelho2').style.display = 'block';
+            }else{
+            document.getElementById("cartao-vermelho-2").style.display = "none";
+            document.getElementById('Input_vermelho2').style.display = 'none';
+            } 
+        }
+
+    </script>
+    
+</body>
+</html>

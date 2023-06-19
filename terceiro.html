@@ -1,0 +1,41 @@
+var navbar = ` <header class="header">
+<div class="container">
+  <div class="header-main">
+    <div class="logo">
+      <a href="/MenudeAtividades/Atividades/Quiz/Quiz.html">Quiz</a>
+    </div>
+    <div class="open-nav-menu">
+      <span></span>
+    </div>
+    <div class="menu-overlay">
+      
+    </div>
+    <nav class="nav-menu">
+      <div class="close-nav-menu">
+        <img src="/imagens/close.svg" alt="close">
+      </div>
+      <ul class="menu">
+        <li class="menu-item"><a href="/index.html">Home</a></li>    
+        <li class="menu-item menu-item-has-children"><a href="#" data-toggle="sub-menu">Autores<i class="plus"></i></a>
+          <ul class="sub-menu">
+            <li class="menu-item"><a href="/Autores/Agatha.html">Agatha Christie</a></li>
+            <li class="menu-item"><a href="/Autores/HP.html">H.P.Lovecraft</a></li>
+            <li class="menu-item"><a href="/Autores/Poe.html">Edgar Allan Poe</a></li>
+          </ul>
+        </li>
+        <li class="menu-item menu-item-has-children"><a href="#" data-toggle="sub-menu">Obras<i class="plus"></i></a>
+          <ul class="sub-menu">
+            <li class="menu-item"><a href="/Livros/Cthulhu.html">Call of Cthulhu</a></li>
+            <li class="menu-item"><a href="/Livros/Mousetrap.html">The Mousetrap</a></li>
+            <li class="menu-item"><a href="/Livros/Theraven.html">The Raven</a></li>
+          </ul>
+        </li>
+        <li class="menu-item"><a href="/Galeria/galeria.html">Galeria</a></li>
+        <li class="menu-item"><a href="/MenudeAtividades/MenuAtividades.html">Atividades</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+</header>`;
+
+document.body.insertAdjacentHTML("afterbegin", navbar);
